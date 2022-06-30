@@ -1,7 +1,21 @@
 #!/bin/bash
 
 url=$1
-
+echo ""
+echo ""
+echo ""
+echo ""
+echo      "//////////   /////////          //////////    //////    //////////"
+echo     "//     ///   //     //          //      //    //  //    //     ///"  
+echo    "/////////    /////////  //////  //      //        //        //////"  
+echo   "//       //  //                 //      //        //        ///"  
+echo  "//       //  //                 //      //        //           "
+echo "//       //  //                 //////////    /////////      ///"
+echo "---------------------------------------------------------------------------------"
+echo ""
+echo ""
+echo ""
+echo ""
 echo "This is your OSINT tool for gathering domain information and emails! Happy Hunting"
 
 if [ ! -d "/home/kali/Desktop/Engagement" ];then
