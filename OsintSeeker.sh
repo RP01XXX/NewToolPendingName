@@ -18,6 +18,13 @@ echo ""
 echo ""
 echo "This is your OSINT tool for gathering domain information and emails! Happy Hunting"
 
+#This tool performs enumeration for your Penetration test on an external assessment. 
+#The tool will create an Engagement-ORG folder, you need to edit it to match where you want it to save
+#This will perform basic scans and export to documents. It will also NMAP scan all discovered IP addresses from Amass automatically.
+#THIS TOOL IS CURRENTLY BEING BUILT and will eventually skip using other tools and perform it by itself. Please leave any recommendations below!
+
+
+#Change this pathway to your personal location.
 if [ ! -d "/home/kali/Desktop/Engagement-$url" ];then
 	mkdir "/home/kali/Desktop/Engagement-$url" 
 fi
