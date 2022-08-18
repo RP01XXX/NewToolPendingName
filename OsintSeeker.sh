@@ -42,7 +42,10 @@ assetfinder $url >> /home/kali/Desktop/Engagement-$url/assetFinderOutput.txt
 echo "Assetfinder is Done..."
 
 echo "[+] Amass is running, take a breather ;)....."
-amass enum -active -d $url -src -ip -dir /home/kali/Desktop/Engagement-$url -o /home/kali/Desktop/Engagement-$url/amass_company_1.txt
+amass enum -active -d $url -src -ip -dir /home/kali/Desktop/Engagement-$url -o /home/kali/Desktop/Engagement-$url/AmassSubDomains.txt
+rm /home/kali/Desktop/Engagement-$url/amass.log
+rm /home/kali/Desktop/Engagement-$url/amass.json
+rm /home/kali/Desktop/Engagement-$url/indexes.bolt
 echo "Amass is Done..."
 
 echo "[+] Sublist3r is running....."
@@ -66,3 +69,5 @@ grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0
 echo "NMAP is scanning  0...0   "
 nmap -T4 -A -sV -iL /home/kali/Desktop/Engagement-$url/ips.txt >> /home/kali/Desktop/Engagement-$url/NMAP Results
 echo "NMAP is Done..."
+
+chmod 777 home/kali/Desktop/Engagement-$url
