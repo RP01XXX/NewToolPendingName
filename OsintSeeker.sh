@@ -22,7 +22,8 @@ echo "This is your OSINT tool for gathering domain information and emails! Happy
 #The tool will create an Engagement-ORG folder, you need to edit it to match where you want it to save
 #This will perform basic scans and export to documents. It will also NMAP scan all discovered IP addresses from Amass automatically.
 #THIS TOOL IS CURRENTLY BEING BUILT and will eventually skip using other tools and perform it by itself. Please leave any recommendations below!
-
+# Status NSLOOKUP, Assetfinder and Amass are tuned. Crosslinked isnt working nor is sublister.
+# Need to add dirb or gobuster (metasploit maybe?, spiderfoot, harvester? Website enumeration like data from pages?
 
 #Change this pathway to your personal location.
 if [ ! -d "/home/kali/Desktop/Engagement-$url" ];then
@@ -70,4 +71,5 @@ echo "NMAP is scanning  0...0   "
 nmap -T4 -A -sV -iL /home/kali/Desktop/Engagement-$url/ips.txt >> /home/kali/Desktop/Engagement-$url/NMAP Results
 echo "NMAP is Done..."
 
-chmod 777 home/kali/Desktop/Engagement-$url
+#THIS ISNT WORKING EVEN AS ROOT
+sudo chmod 777 home/kali/Desktop/Engagement-$url
