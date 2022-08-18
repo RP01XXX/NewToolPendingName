@@ -49,6 +49,7 @@ echo "[+] Assetfinder is running....."
 assetfinder $url >> /home/kali/Desktop/Engagement-$url/assetFinderOutput.txt
 echo "Assetfinder is Done..."
 
+#Amass Finds all Subdomains and IP addresses, not unique and is grepped out later
 echo "[+] Amass is running, take a breather ;)....."
 amass enum -active -d $url -src -ip -dir /home/kali/Desktop/Engagement-$url -o /home/kali/Desktop/Engagement-$url/AmassSubDomains.txt
 rm /home/kali/Desktop/Engagement-$url/amass.log
@@ -56,14 +57,12 @@ rm /home/kali/Desktop/Engagement-$url/amass.json
 rm /home/kali/Desktop/Engagement-$url/indexes.bolt
 echo "Amass is Done..."
 
+#Second look at subdomains with this tool
 echo "[+] Sublist3r is running....."
 sublist3r -d $url >> /home/kali/Desktop/Engagement-$url/sublist3rOutput.txt
 echo "Sublist3r is Done..."
 
-echo "[+] Email gathering from LinkedIn is running....."
-python3 crosslinked.py -f '{first}.{last}@domain.com' $url >> /home/kali/Desktop/Engagement-$url/LinkedInEmails.txt
-echo "Crosslinked is Done..."
-
+#Nikto Vulnerability Scan
 echo "[+]Nikto is running....."
 nikto -h $url >> /home/kali/Desktop/Engagement-$url/niktoOutput.txt
 echo "Nikto is Done..."
