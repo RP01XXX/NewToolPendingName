@@ -12,5 +12,15 @@ Tools Required:
 Amass
 Assetfinder
 Sublist3r
-Crosslinked
 Nikto
+
+
+What Features Are Coming
+- Dirbuster
+- MSFC Dir search
+- SNMP Enum
+- DNSEnum
+- Fierce2
+- Banner Grabbing from the NMAP file
+- Reverse DNS
+- Zone Transfers
