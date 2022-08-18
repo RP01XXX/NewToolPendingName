@@ -32,6 +32,7 @@ fi
 
 echo "Directory Permissions setting..."
 chmod 777 /home/kali/Desktop/Engagement-$url
+cd /home/kali/Desktop/Engagement-$url
 echo "Directory Permissions Done..."
 
 echo "[+] NSLOOKUP is running....."
@@ -61,15 +62,12 @@ echo "[+]Nikto is running....."
 nikto -h $url >> /home/kali/Desktop/Engagement-$url/niktoOutput.txt
 echo "Nikto is Done..."
 
-echo " The enumeration is done! Now the port scanning begins"
 # NMAP will now grep out IPs from amass and export them to a file, that file will then be uploaded for a port scan in NMAP"
-echo "Port Scanning is Done..."
-
+echo " The enumeration is done! Now the port scanning begins"
 grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" AmassSubDomains.txt | sort -u >>ips.txt
-
 echo "NMAP is scanning  0...0   "
 nmap -T4 -A -sV -iL /home/kali/Desktop/Engagement-$url/ips.txt >> /home/kali/Desktop/Engagement-$url/NMAP Results
-echo "NMAP is Done..."
+echo "Port Scanning is Done..."
 
 #THIS ISNT WORKING EVEN AS ROOT
 sudo chmod 777 home/kali/Desktop/Engagement-$url
