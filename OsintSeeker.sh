@@ -64,7 +64,7 @@ echo " The enumeration is done! Now the port scanning begins"
 # NMAP will now grep out IPs from amass and export them to a file, that file will then be uploaded for a port scan in NMAP"
 echo "Port Scanning is Done..."
 
-grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" amass_company_1.txt | sort -u >>ips.txt
+grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" AmassSubDomains.txt | sort -u >>ips.txt
 
 echo "NMAP is scanning  0...0   "
 nmap -T4 -A -sV -iL /home/kali/Desktop/Engagement-$url/ips.txt >> /home/kali/Desktop/Engagement-$url/NMAP Results
