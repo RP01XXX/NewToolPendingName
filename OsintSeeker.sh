@@ -4,22 +4,7 @@ url=$1
 echo ""
 echo ""
 echo ""
-echo ""
-echo "   ||||||||||||||	 ||||||||||||  |||  |||\\\     |||   |||||||||||||"
-echo "   ||          ||	 ||	       |||  |||	\\\    |||        |||     "
-echo "   ||          ||	 ||||||||||||  |||  |||  \\\   |||        |||"
-echo "   ||          ||		   ||  |||  |||	  \\\  |||        |||"
-echo "   ||          ||		   ||  |||  |||	   \\\ |||	  |||"
-echo "   ||||||||||||||	 ||||||||||||  |||  |||	    \\\|||        |||"
-echo "---------------------------------------------------------------------------------"
-echo "---------------------------------------------------------------------------------"
-echo "   ||||||||||||||   ||||||||||   ||||||||||   ||   //  ||||||||||   |||||||||| "
-echo "   ||               ||           ||           ||  //   ||           ||      ||  "
-echo "   ||               ||           ||           || //    ||           ||      ||  "
-echo "   ||||||||||||||   ||||||||     ||||||||||   ||\      ||||||||     ||||||||||  "
-echo "               ||   ||           ||           || \\    ||           ||     \\   "
-echo "               ||   ||           ||           ||  \\   ||           ||      \\  "
-echo "   ||||||||||||||   ||||||||||   ||||||||||   ||   \\  ||||||||||   ||       \\ "
+echo "This Tools Name is Pending"
 echo "---------------------------------------------------------------------------------"
 echo "---------------------------------------------------------------------------------"
 echo "This is your OSINT tool for gathering domain information and emails! Happy Hunting"
@@ -73,6 +58,17 @@ grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0
 echo "NMAP is scanning  0...0   "
 nmap -T4 -A -sV -iL /home/kali/Desktop/Engagement-$url/ips.txt >> /home/kali/Desktop/Engagement-$url/NMAP Results
 echo "Port Scanning is Done..."
+
+#CRT.SH searching for interesting subdomain Locations, I would like to take the outputs of Amass and play here more as an input.
+curl -s https://crt.sh/?q=$url > /home/kali/Desktop/Engagement-$url/crtfirst.txt
+cat /home/kali/Desktop/Engagement-$url/crtfirst.txt | grep $TARGET | grep TD | sed -e 's/<//g' | sed -e 's/>//g' | sed -e 's/TD//g' | sed -e 's/\///g' | sed -e 's/ //g' | sed -n '1!p' | sort -u > /home/kali/Desktop/Engagement-$url/$TARGET-crt.txt
+curl -s https://crt.sh/?q=*.$url > /home/kali/Desktop/Engagement-$url/crtsecond.txt
+cat /home/kali/Desktop/Engagement-$url/crtsecond.txt | grep $TARGET | grep TD | sed -e 's/<//g' | sed -e 's/>//g' | sed -e 's/TD//g' | sed -e 's/\///g' | sed -e 's/ //g' | sed -n '1!p' | sort -u > /home/kali/Desktop/Engagement-$url/$TARGET-crt2.txt
+
+#Can I copy all file data and place into 1 file and then delete the file left over to have 1 file?
+rm /home/kali/Desktop/Engagement-$url/crtfirst.txt 
+rm /home/kali/Desktop/Engagement-$url/crtsecond.txt 
+
 
 #THIS ISNT WORKING EVEN AS ROOT
 sudo chmod 777 home/kali/Desktop/Engagement-$url
