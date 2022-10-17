@@ -1,27 +1,11 @@
 # Summary
+There are two tools here for external pentesting.
 
-
-In order to run this tool, the programs have to already be installed
-I am working on changing it to do checks and import modules for you if not already installed.
-
-This is my first time making something like this so its a start that I hope to see blossom!
-
-
-Tools Required:
-
-Amass
-Assetfinder
-Sublist3r
-Nikto
-
-
-What Features Are Coming
-- Dirbuster
-- MSFC Dir search
-- SNMP Enum
-- DNSEnum
-- Fierce2
-- Banner Grabbing from the NMAP file
-- Reverse DNS
-- Zone Transfers
-- SSL Test on websites
+1. OSINT-IP-Finder
+  This is for tests that only provide IP ranges and you need to scan. This performs your enumeration phases.
+  
+2. OSINT Seeker
+  This is for tests where you only have URLS.
+  
+ 
+These are all in progress and I would love your opinion on this work to make it better!
