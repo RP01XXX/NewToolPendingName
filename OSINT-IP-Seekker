@@ -24,14 +24,14 @@ nmap -A -p 21,22,23,25,139,53,80,443,445,8080,8443,69 -Pn -iL "/home/kali/Deskto
 
 #run a complete scan just in case!
  sudo nmap -A -O -Pn -p- -iL "/home/kali/Desktop/Engagement-$Name/NmapIPsAlive.txt" -oN  "/home/kali/Desktop/Engagement-$Name/NmapIPAll.txt"
-
- chmod 777 /home/kali/Desktop/Engagement/*
  
+
  #WHAT I WANT IT TO DO
  #resolve IP addresses to websites
  #run eyewitness on all websites
  nmap -p80 -Pn $IP -oG "/home/kali/Desktop/Engagement-$Name/NMAPHTTP.txt"
  
+ chmod 777 "/home/kali/Desktop/Engagement-$Name/*
  grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" "/home/kali/Desktop/Engagement/NmapPingScan.txt" | sort -u >>"/home/kali/Desktop/Engagement/NmapHttp2.txt" 
  
  rm -r "/home/kali/Desktop/Engagement-$Name/NMAPHTTP.txt"
