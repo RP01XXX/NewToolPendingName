@@ -1,5 +1,5 @@
 #!/bin/bash
-#This section identifies your IP range to scan.
+#This section runs NMAP scans of all IPs provided with a ping scan first then adds to an IP listing, then it finds specific ports of interest and then runs a complet scan as well.
 echo "Enter Your IP"
 read IP
 
