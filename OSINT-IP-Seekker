@@ -6,22 +6,22 @@ read IP
 echo "Company Name"
 read Name
 
-if [ ! -d "/home/kali/Desktop/Nmap-$Name" ];then
-	mkdir "/home/kali/Desktop/Nmap-$Name" 
+if [ ! -d "~/Nmap-$Name" ];then
+	mkdir "~/Nmap-$Name" 
 fi
 
 # Perform a Ping Scan
-nmap -sP $IP -oN "/home/kali/Desktop/Nmap-$Name/NmapPingScan.txt" 
+nmap -sP $IP -oN "~/Nmap-$Name/NmapPingScan.txt" 
 
 # Grep out the ping scan for the IPs and output to a text file to scan next stages
-grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" "/home/kali/Desktop/Nmap-$Name/NmapPingScan.txt" | sort -u >>"/home/kali/Desktop/Nmap-$Name/NmapIPsAlive.txt" 
+grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" "~/Nmap-$Name/NmapPingScan.txt" | sort -u >>"~/Nmap-$Name/NmapIPsAlive.txt" 
 
 # remove the old ping scan text
 rm -r "/home/kali/Desktop/Nmap-$Name/NmapPingScan.txt" 
 
 #run a low hanging fruit command
-nmap -A -p 21,22,23,25,139,53,80,443,445,8080,8443,69 -Pn -iL "/home/kali/Desktop/Nmap-$Name/NmapIPsAlive.txt" -oN "/home/kali/Desktop/Nmap-$Name/NmapLowHangingFruit.txt"
+nmap -A -p 21,22,23,25,139,53,80,443,445,8080,8443,69 -Pn -iL "~/Nmap-$Name/NmapIPsAlive.txt" -oN "~/Nmap-$Name/NmapLowHangingFruit.txt"
 
 #run a complete scan just in case!
- sudo nmap -A -O -Pn -p- -iL "/home/kali/Desktop/Nmap-$Name/NmapIPsAlive.txt" -oN  "/home/kali/Desktop/Nmap-$Name/NmapIPAll.txt"
+ sudo nmap -A -O -Pn -p- -iL "/~/Nmap-$Name/NmapIPsAlive.txt" -oN  "~/Nmap-$Name/NmapIPAll.txt"
  
