@@ -26,19 +26,17 @@ if [ ! -d "/home/kali/Desktop/Engagement-$Name" ];then
 	mkdir "/home/kali/Desktop/Engagement-$Name" 
 fi
 
-
-
 echo "[+] NSLOOKUP is running....."
-nslookup $Name >> /home/kali/Desktop/Engagement-$Name/NSLOOKUP.txt
+nslookup $url >> /home/kali/Desktop/Engagement-$Name/NSLOOKUP.txt
 echo "NSLOOKUP is Done..."
 
 echo "[+] Assetfinder is running....."
-assetfinder $Name >> /home/kali/Desktop/Engagement-$Name/assetFinderOutput.txt
+assetfinder $url >> /home/kali/Desktop/Engagement-$Name/assetFinderOutput.txt
 echo "Assetfinder is Done..."
 
 #Amass Finds all Subdomains and IP addresses, not unique and is grepped out later
 echo "[+] Amass is running, take a breather ;)....."
-amass enum -active -d $Name -src -ip -dir /home/kali/Desktop/Engagement-$Name -o /home/kali/Desktop/Engagement-$Name/AmassSubDomains.txt
+amass enum -active -d $url -src -ip -dir /home/kali/Desktop/Engagement-$Name -o /home/kali/Desktop/Engagement-$Name/AmassSubDomains.txt
 rm /home/kali/Desktop/Engagement-$Name/amass.log
 rm /home/kali/Desktop/Engagement-$Name/amass.json
 rm /home/kali/Desktop/Engagement-$Name/indexes.bolt
@@ -46,11 +44,11 @@ echo "Amass is Done..."
 
 #Nikto Vulnerability Scan
 echo "[+]Nikto is running....."
-nikto -h $Name >> /home/kali/Desktop/Engagement-$Name/niktoOutput.txt
+nikto -h $url >> /home/kali/Desktop/Engagement-$Name/niktoOutput.txt
 echo "Nikto is Done..."
 
 #CRT.SH searching for interesting subdomain Locations, I would like to take the outputs of Amass and play here more as an input.
-curl -s https://crt.sh/?q=$Name > /home/kali/Desktop/Engagement-$Name/crtfirst.txt
+curl -s https://crt.sh/?q=$url > /home/kali/Desktop/Engagement-$Name/crtfirst.txt
 cat /home/kali/Desktop/Engagement-$Name/crtfirst.txt | grep $TARGET | grep TD | sed -e 's/<//g' | sed -e 's/>//g' | sed -e 's/TD//g' | sed -e 's/\///g' | sed -e 's/ //g' | sed -n '1!p' | sort -u > /home/kali/Desktop/Engagement-$Name/$TARGET-crt.txt
 curl -s https://crt.sh/?q=*.$url > /home/kali/Desktop/Engagement-$Name/crtsecond.txt
 cat /home/kali/Desktop/Engagement-$Name/crtsecond.txt | grep $TARGET | grep TD | sed -e 's/<//g' | sed -e 's/>//g' | sed -e 's/TD//g' | sed -e 's/\///g' | sed -e 's/ //g' | sed -n '1!p' | sort -u > /home/kali/Desktop/Engagement-$Name/$TARGET-crt2.txt
@@ -63,3 +61,4 @@ echo "Directory Permissions setting..."
 chmod 777 /home/kali/Desktop/Engagement-$Name
 cd /home/kali/Desktop/Engagement-$Name
 echo "Directory Permissions Done..."
+
