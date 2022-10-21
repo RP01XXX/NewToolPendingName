@@ -25,7 +25,7 @@ nmap -sP -oG - $IP | grep Host | cut -d' '   -f  2 | sort -u > "/$path/Nmap-$Nam
 nmap -p 80 -oG - $IP | grep Host | cut -d' ' -f 2 | sort -u > "/$path/Nmap-$Name/scanMe.txt"
 
 
-#running eyewitness
+#running eyewitness NOT WORKING, dont get why it wont work
 cd "/$path/Nmap-$Name/" && eyewitness -f 'scanMe.txt' --no-prompt 
 
 chmod 777 $path/Nmap-$Name
