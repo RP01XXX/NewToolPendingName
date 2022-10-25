@@ -15,11 +15,14 @@ if [ ! -d "$path/Nmap-$Name" ];then
 fi
 
 # Perform a Ping Scan
-nmap -sP  $IP -oA - | grep Host | cut -d' ' -f 2 | sort -u > "/$path/Nmap-$Name/PingSweep.txt"
+nmap -sP  $IP -oG - | grep Host | cut -d' ' -f 2 | sort -u > "/$path/Nmap-$Name/PingSweep.txt"
 
 #run a complete scan to parse data.
 nmap -A -O -Pn -p- -iL "/$path/Nmap-$Name/NmapAliveIPs.txt" -oA  "/$path/Nmap-$Name/NmapIPAll.txt"
 
-#Needs NMAP Parser added
+#Resolve the IP range to Hostnames
+dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
+
+#You are now set to run https://raw.githubusercontent.com/jasonjfrank/gnmap-parser/master/Gnmap-Parser.sh
 chmod 777 $path/Nmap-$Name
 chmod 777 $path/Nmap-$Name/*
