@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo "Enter Your url"
+echo "Enter Your url, do NOT include TLD (www)"
 read url
 
 echo "Company Name"
 read Name
 
-echo "Save Path"
-read Path
+echo "Location path to save files, this will create  an engagement folder"
+read path
 
 echo ""
 echo ""
@@ -48,29 +48,13 @@ rm $path/$Name/amass.json
 rm $path/$Name/indexes.bolt
 echo "Amass is Done..."
 
-#Nikto Vulnerability Scan
-echo "[+]Nikto is running....."
-nikto -h $url >> $path/$Name/niktoOutput.txt
-echo "Nikto is Done..."
+echo "identify unique IP's from  Amass"
+grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" $path/$Name/AmassSubDomains.txt | sort -u >> $path/$Name/UniqueIps.txt
 
-#We need to now grep out all IP addresses from an NMAP scan, then use eyewitness to scan the IP folder
+#This stops here as you need to verify if all IPs found are in scope or not.
 
-#aquatone?
-
-
-#THIS IS IN PROGRESS
-#CRT.SH searching for interesting subdomain Locations, I would like to take the outputs of Amass and play here more as an input.
-#curl -s https://crt.sh/?q=$url > /home/kali/Desktop/Engagement-$Name/crtfirst.txt
-#cat /home/kali/Desktop/Engagement-$Name/crtfirst.txt | grep $TARGET | grep TD | sed -e 's/<//g' | sed -e 's/>//g' | sed -e 's/TD//g' | sed -e 's/\///g' | sed -e 's/ //g' | sed -n '1!p' | sort -u > /home/kali/Desktop/Engagement-$Name/$TARGET-crt.txt
-#curl -s https://crt.sh/?q=*.$url > /home/kali/Desktop/Engagement-$Name/crtsecond.txt
-#cat /home/kali/Desktop/Engagement-$Name/crtsecond.txt | grep $TARGET | grep TD | sed -e 's/<//g' | sed -e 's/>//g' | sed -e 's/TD//g' | sed -e 's/\///g' | sed -e 's/ //g' | sed -n '1!p' | sort -u > /home/kali/Desktop/Engagement-$Name/$TARGET-crt2.txt
-
-#Can I copy all file data and place into 1 file and then delete the file left over to have 1 file?
-#rm /home/kali/Desktop/Engagement-$Name/crtfirst.txt 
-#rm /home/kali/Desktop/Engagement-$Name/crtsecond.txt 
 
 echo "Directory Permissions setting..."
 chmod 777 $path/$Name/*
 cd $path/$Name/
 echo "Directory Permissions Done..."
-
