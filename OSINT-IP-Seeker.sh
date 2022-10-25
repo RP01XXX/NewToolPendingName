@@ -21,7 +21,7 @@ nmap -sP  $IP -oG - | grep Host | cut -d' ' -f 2 | sort -u > "/$path/Nmap-$Name/
 nmap -A -O -Pn -p- -iL "/$path/Nmap-$Name/NmapAliveIPs.txt" -oA  "/$path/Nmap-$Name/NmapIPAll.txt"
 
 #Resolve the IP range to Hostnames
-dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
+dnsrecon -r "/$path/Nmap-$Name/PingSweep.txt" -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 
 #You are now set to run https://raw.githubusercontent.com/jasonjfrank/gnmap-parser/master/Gnmap-Parser.sh
 chmod 777 $path/Nmap-$Name
