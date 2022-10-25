@@ -15,18 +15,11 @@ if [ ! -d "$path/Nmap-$Name" ];then
 fi
 
 # Perform a Ping Scan
-nmap -sP -oG - $IP | grep Host | cut -d' '   -f  2 | sort -u > "/$path/Nmap-$Name/NmapAliveIPs.txt"
+nmap -sP  $IP -oG - | grep Host | cut -d' ' -f 2 | sort -u > "/$path/Nmap-$Name/PingSweep.txt"
 
-#run a complete scan just in case!
-#nmap -A -O -Pn -p- -iL "/$path/Nmap-$Name/NmapAliveIPs.txt" -oN  "/$path/Nmap-$Name/NmapIPAll.txt"
+#run a complete scan to parse data.
+nmap -A -O -Pn -p- -iL "/$path/Nmap-$Name/NmapAliveIPs.txt" -oN  "/$path/Nmap-$Name/NmapIPAll.txt"
 
-#Running for eyewitness. Eventually the complete scan will just parse out and input the file.
-#nmap -p 22 -oG - $IP  | awk '/80/open/ {print $2}'
-nmap -p 80 -oG - $IP | grep Host | cut -d' ' -f 2 | sort -u > "/$path/Nmap-$Name/scanMe.txt"
-
-
-#running eyewitness NOT WORKING, dont get why it wont work
-cd "/$path/Nmap-$Name/" && eyewitness -f 'scanMe.txt' --no-prompt 
-
+#Needs NMAP Parser added
 chmod 777 $path/Nmap-$Name
 chmod 777 $path/Nmap-$Name/*
