@@ -6,6 +6,9 @@ read url
 echo "Company Name"
 read Name
 
+echo "Save Path"
+read Path
+
 echo ""
 echo ""
 echo ""
@@ -22,43 +25,52 @@ echo "This is your OSINT tool for gathering domain information and emails! Happy
 # Need to add dirb or gobuster (metasploit maybe?, spiderfoot, harvester? Website enumeration like data from pages?
 
 #Change this pathway to your personal location.
-if [ ! -d "/home/kali/Desktop/Engagement-$Name" ];then
-	mkdir "/home/kali/Desktop/Engagement-$Name" 
+if [ ! -d "$path/$Name" ];then
+	mkdir "$path/$Name/" 
 fi
 
 echo "[+] NSLOOKUP is running....."
-nslookup $url >> /home/kali/Desktop/Engagement-$Name/NSLOOKUP.txt
+nslookup $url >> $path/$Name/NSLOOKUP.txt
 echo "NSLOOKUP is Done..."
 
 echo "[+] Assetfinder is running....."
-assetfinder $url >> /home/kali/Desktop/Engagement-$Name/assetFinderOutput.txt
+assetfinder $url >> $path/$Name/assetFinderOutput.txt
 echo "Assetfinder is Done..."
+
+echo "[+]  Whatweb is running......."
+whatweb $url --aggression 3 -v --no-errors --log-verbose=$path/$Name/WWebResults.txt
 
 #Amass Finds all Subdomains and IP addresses, not unique and is grepped out later
 echo "[+] Amass is running, take a breather ;)....."
-amass enum -active -d $url -src -ip -dir /home/kali/Desktop/Engagement-$Name -o /home/kali/Desktop/Engagement-$Name/AmassSubDomains.txt
-rm /home/kali/Desktop/Engagement-$Name/amass.log
-rm /home/kali/Desktop/Engagement-$Name/amass.json
-rm /home/kali/Desktop/Engagement-$Name/indexes.bolt
+amass enum -active -d $url -src -ip -dir $path/$Name/ -o $path/$Name/AmassSubDomains.txt
+rm $path/$Name/amass.log
+rm $path/$Name/amass.json
+rm $path/$Name/indexes.bolt
 echo "Amass is Done..."
 
 #Nikto Vulnerability Scan
 echo "[+]Nikto is running....."
-nikto -h $url >> /home/kali/Desktop/Engagement-$Name/niktoOutput.txt
+nikto -h $url >> $path/$Name/niktoOutput.txt
 echo "Nikto is Done..."
 
+#We need to now grep out all IP addresses from an NMAP scan, then use eyewitness to scan the IP folder
+
+#aquatone?
+
+
+#THIS IS IN PROGRESS
 #CRT.SH searching for interesting subdomain Locations, I would like to take the outputs of Amass and play here more as an input.
-curl -s https://crt.sh/?q=$url > /home/kali/Desktop/Engagement-$Name/crtfirst.txt
-cat /home/kali/Desktop/Engagement-$Name/crtfirst.txt | grep $TARGET | grep TD | sed -e 's/<//g' | sed -e 's/>//g' | sed -e 's/TD//g' | sed -e 's/\///g' | sed -e 's/ //g' | sed -n '1!p' | sort -u > /home/kali/Desktop/Engagement-$Name/$TARGET-crt.txt
-curl -s https://crt.sh/?q=*.$url > /home/kali/Desktop/Engagement-$Name/crtsecond.txt
-cat /home/kali/Desktop/Engagement-$Name/crtsecond.txt | grep $TARGET | grep TD | sed -e 's/<//g' | sed -e 's/>//g' | sed -e 's/TD//g' | sed -e 's/\///g' | sed -e 's/ //g' | sed -n '1!p' | sort -u > /home/kali/Desktop/Engagement-$Name/$TARGET-crt2.txt
+#curl -s https://crt.sh/?q=$url > /home/kali/Desktop/Engagement-$Name/crtfirst.txt
+#cat /home/kali/Desktop/Engagement-$Name/crtfirst.txt | grep $TARGET | grep TD | sed -e 's/<//g' | sed -e 's/>//g' | sed -e 's/TD//g' | sed -e 's/\///g' | sed -e 's/ //g' | sed -n '1!p' | sort -u > /home/kali/Desktop/Engagement-$Name/$TARGET-crt.txt
+#curl -s https://crt.sh/?q=*.$url > /home/kali/Desktop/Engagement-$Name/crtsecond.txt
+#cat /home/kali/Desktop/Engagement-$Name/crtsecond.txt | grep $TARGET | grep TD | sed -e 's/<//g' | sed -e 's/>//g' | sed -e 's/TD//g' | sed -e 's/\///g' | sed -e 's/ //g' | sed -n '1!p' | sort -u > /home/kali/Desktop/Engagement-$Name/$TARGET-crt2.txt
 
 #Can I copy all file data and place into 1 file and then delete the file left over to have 1 file?
-rm /home/kali/Desktop/Engagement-$Name/crtfirst.txt 
-rm /home/kali/Desktop/Engagement-$Name/crtsecond.txt 
+#rm /home/kali/Desktop/Engagement-$Name/crtfirst.txt 
+#rm /home/kali/Desktop/Engagement-$Name/crtsecond.txt 
 
 echo "Directory Permissions setting..."
-chmod 777 /home/kali/Desktop/Engagement-$Name
-cd /home/kali/Desktop/Engagement-$Name
+chmod 777 $path/$Name/*
+cd $path/$Name/
 echo "Directory Permissions Done..."
 
