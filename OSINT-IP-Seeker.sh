@@ -15,10 +15,10 @@ if [ ! -d "$path/Nmap-$Name" ];then
 fi
 
 # Perform a Ping Scan
-nmap -sP  $IP -oG - | grep Host | cut -d' ' -f 2 | sort -u > "/$path/Nmap-$Name/PingSweep.txt"
+nmap -sP  $IP -oA - | grep Host | cut -d' ' -f 2 | sort -u > "/$path/Nmap-$Name/PingSweep.txt"
 
 #run a complete scan to parse data.
-nmap -A -O -Pn -p- -iL "/$path/Nmap-$Name/NmapAliveIPs.txt" -oN  "/$path/Nmap-$Name/NmapIPAll.txt"
+nmap -A -O -Pn -p- -iL "/$path/Nmap-$Name/NmapAliveIPs.txt" -oA  "/$path/Nmap-$Name/NmapIPAll.txt"
 
 #Needs NMAP Parser added
 chmod 777 $path/Nmap-$Name
