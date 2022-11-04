@@ -46,7 +46,9 @@ amass enum -active -d $url -src -ip -dir $path/$Name/ -o $path/$Name/AmassSubDom
 rm $path/$Name/amass.log
 rm $path/$Name/amass.json
 rm $path/$Name/indexes.bolt
+amass viz -d3  -d $url
 echo "Amass is Done..."
+
 
 echo "identify unique IP's from  Amass"
 grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" $path/$Name/AmassSubDomains.txt | sort -u >> $path/$Name/UniqueIps.txt
