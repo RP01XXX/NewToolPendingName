@@ -40,6 +40,11 @@ echo "Assetfinder is Done..."
 echo "[+]  Whatweb is running......."
 whatweb $url --aggression 3 -v --no-errors --log-verbose=$path/$Name/WWebResults.txt
 
+#SSL Scan 
+echo "Scanning for SSL Vulnerabilities....."
+sslyze $url >> $path/$Name/sslfindings.txt
+
+
 #Amass Finds all Subdomains and IP addresses, not unique and is grepped out later
 echo "[+] Amass is running, take a breather ;)....."
 amass enum -active -d $url -src -ip -dir $path/$Name/ -o $path/$Name/AmassSubDomains.txt
