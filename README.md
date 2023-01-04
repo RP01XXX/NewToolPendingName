@@ -18,7 +18,7 @@ After tool  3, you would begin your manual work.
  
 These are all in progress and I would love your opinion on this work to make it better!
 # External-Pentest-Checklist
-This is a cheat sheet to help teach pentesters how to perform external assessments. I am training and as I grow I will continue to change this document. Please send me input to add to this checklist! This is heavily under construction and I update it daily.
+This is a cheat sheet to help teach pentesters how to perform external assessments. I am training and as I grow I will continue to change this document. Please send me input to add to this checklist! This is heavily under construction and I update it daily. The BIGGEST key takeaway is that as a pentester, having a/this checklist will not make you great at testing. These tools provide data that you must understand how to use in each proceeding step to find the vulnerabilities/exploits. This checklist is to help you keep on schedule during a test.
 
 My Process:
 Administrative
