@@ -146,10 +146,7 @@ What you should have  at this point:
 ### msspray.py
 
 
-# What is to come	
-## Port/Protocol Enumeration and Attacks
-
-# Website Analysis
+# Discovery Step 5: Website Analysis
 - Note, this section will not use the full Web Application OWASP Top 10 list. That will be a seperate section/checklist.
 	
 ## Google Dorking
@@ -181,9 +178,12 @@ What you should have  at this point:
 ### FILE TYPES TO LOOK FOR:
 - filetype: mdb, doc, docx, pdf, ini, xlsx, txt, config
 
-	
+
+# What is to come	
 - Wappalyzer
 - Dirbuster/Dirb/Gobuuster
 - Directory Bust ffuf    (403 and 401) attack with /unauth_dir/FUZZ
 - Wayback Machine
 - Metasploit auxiliary/scanner/http/dir-scanner <DICTIONARY>  (opt/seclists/discovery/Web-content/common.txt)
+	
+
