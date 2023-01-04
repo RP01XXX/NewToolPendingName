@@ -72,7 +72,7 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 - TXT = nslookup -q=txt URL
 - SOA = nslookup -q=soa URL
 
-###Try a DNS zone transfer
+### Try a DNS zone transfer
 - dig -t AXFR DOMAIN_NAME @DNS_SERVER
 - The -t AXFR indicates that we are requesting a zone transfer, while @ precedes the DNS_SERVER that we want to query regarding the records related to the specified DOMAIN_NAME.
 
@@ -101,7 +101,7 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 - Look into Tenables tool
 ## Nikto
 - Nikto -host <URL>
-### wpscan
+## Wpscan
 - Wordpress specific scanner, wpscan URL
 
 What you should have  at this point:
@@ -149,7 +149,10 @@ What you should have  at this point:
 # What is to come	
 ## Port/Protocol Enumeration and Attacks
 
-## Website Analysis
+# Website Analysis
+- Note, this section will not use the full Web Application OWASP Top 10 list. That will be a seperate section/checklist.
+	
+## Google Dorking
 ### Dorking Syntax
 - "search phrase" Finds results with this exact phrase
 - Words filetype:pdf = looks for PDFs with this term
@@ -158,8 +161,27 @@ What you should have  at this point:
 - walk intitle:Website = finds pages with specific term in page title
 - challenge inurl:website = finds pages with specific term in URL
 
+### Basic Operators
+- site: narrow results to a site   site:mysite.com
+- intitle: restrict results to titles of webpages  intitle:"admin"
+- inurl - restricts results to the URL of a website
+- filetype  - looks for filetypes based on extensions    filetype:pdf
+- link - searches for pages linking to a specific URL   link:website.com
+- cache - search for a cached copy of a webpage indexed by google
+
+### Finds for services (note this will grow as I discover more)
+- site:mysite.com intitle:"index of"
+- May want to look for /etc/passwd   or  etc/mail   or /etc
+
+- SQL Databases and Files that may have credentials
+- intitle:"Index of" config.php  or intitle:"Index of" filetype:php config or intitle:"Index of" wp-config.php
+- It may show blank so we can use WGET to pull the data which downloads it
 
 
+### FILE TYPES TO LOOK FOR:
+- filetype: mdb, doc, docx, pdf, ini, xlsx, txt, config
+
+	
 - Wappalyzer
 - Dirbuster/Dirb/Gobuuster
 - Directory Bust ffuf    (403 and 401) attack with /unauth_dir/FUZZ
