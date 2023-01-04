@@ -35,10 +35,10 @@ For Below - Step 1 or step 2 are performed in order based off the information th
 - Once all URL's are identified run OSINT-URL-Seeker
 
 ## Assetfinder
-Find subdomains
+### Find subdomains
 	- assetfinder $url >> /home/kali/Desktop/Engagement-<NAME>/assetFinderOutput.txt
 ## Amass
-- ABOUT: This identifies sudomains
+### ABOUT: This identifies sudomains
 	- amass enum -active -d <URL>  -src -ip -dir <PATHWAY> -o <OUTPUTPATH>
 ## WhatWeb
 - ABOUT: This tool finds HTTP headers, country of IP, HTTP server info, HTTPAPI info and more.
@@ -51,9 +51,9 @@ Find subdomains
 
 # Discovery Step 2: Identify Ports/Protocols/Services
 ## Nmap Work
-- ABOUT: ping scan - Perform an NMAP ping scan to identify live hosts and export to a list. Then grep that list and perform a low hanging fruit and full NMAP scan.
-- CMD:nmap -sP  $IP -oG - | grep Host | cut -d' ' -f 2 | sort -u > "/$path/Nmap-$Name/PingSweep.txt""
-- CMD: Complete  Scan:nmap -A -O -Pn -p- -iL "/$path/Nmap-$Name/PingSweep.txt" -oA  "/$path/Nmap-$Name/NmapIPAll.txt"
+### ABOUT: ping scan - Perform an NMAP ping scan to identify live hosts and export to a list. Then grep that list and perform a low hanging fruit and full NMAP scan.
+	- CMD:nmap -sP  $IP -oG - | grep Host | cut -d' ' -f 2 | sort -u > "/$path/Nmap-$Name/PingSweep.txt""
+	- CMD: Complete  Scan:nmap -A -O -Pn -p- -iL "/$path/Nmap-$Name/PingSweep.txt" -oA  "/$path/Nmap-$Name/NmapIPAll.txt"
 
 ### Parse this data to idenify ports, protocols etc.
 - https://raw.githubusercontent.com/jasonjfrank/gnmap-parser
@@ -64,8 +64,8 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 	
 ## DNS/Networking
 ### whois
-- Either command line or just lookup.icann.org
-- nslookup We can lok up the A records, AAA, CNAME, TXT ,SOA if we want.
+	- Either command line or just lookup.icann.org
+	- nslookup We can lok up the A records, AAA, CNAME, TXT ,SOA if we want.
 	- CNAME= nslookup -q=cname URL
 	- TXT = nslookup -q=txt URL
 	- SOA = nslookup -q=soa URL
@@ -80,12 +80,12 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 	- ls -d URL
 
 ### Dnsrecon zone transfer
-- Reverse of host resolution, we may need to get the IP addresses of the URL's by using dnsrecon -d URL   
 	- dnsrecon zone transfer  with dnsrecond -d URL -t axfr
 	- dns bruteforce to find domains and hosts dnsrecon -d URL -D DICTIONARY -t brt
+Reverse of host resolution, we may need to get the IP addresses of the URL's by using dnsrecon -d URL   
 
 ### Dig
-- Dig website,com@X.X.X.X
+	- Dig website,com@X.X.X.X
 
 ### Traceroute
 - Run a traceroute to discover hops to identify devices.
@@ -107,7 +107,7 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 ## Nessus
 - Look into Tenables tool
 ## Nikto
-- Nikto -host <URL>
+	- Nikto -host <URL>
 ## Wpscan
 - Wordpress specific scanner, wpscan URL
 	
@@ -117,38 +117,44 @@ What you should have  at this point:
 
 # Discovery Step 4: Username and email discovery
 ## The Harvester
-- b specifies where we look for the emails
-- twitter, google, linkedin, all, dnsudmpsterp, crtsh,certspotter
-- CMD: theHarvester -d website -b All
+	- b specifies where we look for the emails
+	- twitter, google, linkedin, all, dnsudmpsterp, crtsh,certspotter
+	- CMD: theHarvester -d website -b All
+	
 ## Hunter.io
+
 ## Dehashed
+
 ## phonebook.cz
+
 ## javascript linkedin scraper
+
 ##python email scraper
 	they have their own tool in the system. They have an if count ==  100, which goes through a url you specify  and then crawls out until it hits 100 websites and finds emails.
 ## sherlock
+	- cmd: python3 sherlock.py <username>
 - We use this  tool to further inspect users found from above scans,may provide other usernames
-- cmd: python3 sherlock.py <username>
+
 
 ## Office 365 User Identification
-### o365spray (https://github.com/0xZDH/o365spray)
-- We can use o365spray to test the domain if its real first
-- o365spray --validate --domain website.com
-- Next lets take any users we have found in OSINT and see if they are real
-- o365spray --enum -U usernames.txt --domain domain.com
-- Now its time to see if we can get into any accounts without MFA
-- o365spray  --spray -U usernames.txt -P passwords.txt --count 2 --lockout 3 --domain test.com
-- Flags
-- count = how many tries of passwords before lockout
-- lockout is the time for lockout time IE in minutes
-- --spray-module = oauth, autodiscover, reporting, adfs, activesync
-- --output   the file
+### o365spray https://github.com/0xZDH/o365spray
+	- We can use o365spray to test the domain if its real first
+	- o365spray --validate --domain website.com
+	- Next lets take any users we have found in OSINT and see if they are real
+	- o365spray --enum -U usernames.txt --domain domain.com
+	- Now its time to see if we can get into any accounts without MFA
+	- o365spray  --spray -U usernames.txt -P passwords.txt --count 2 --lockout 3 --domain test.com
+	- Flags
+	- count = how many tries of passwords before lockout
+	- lockout is the time for lockout time IE in minutes
+	- --spray-module = oauth, autodiscover, reporting, adfs, activesync
+	- --output   the file
 
 ### 0365enum
-- https://github.com/gremwell/o365enum
+	- https://github.com/gremwell/o365enum
 
 ### MSOLspray
-- https://github.com/dafthack/MSOLSpray
+	- https://github.com/dafthack/MSOLSpray
 
 ### msspray.py
 
@@ -158,32 +164,32 @@ What you should have  at this point:
 	
 ## Google Dorking
 ### Dorking Syntax
-- "search phrase" Finds results with this exact phrase
-- Words filetype:pdf = looks for PDFs with this term
-- salary site:website.com = limits search to website
-- pentest -site:website.com = excludes the term from the search
-- walk intitle:Website = finds pages with specific term in page title
-- challenge inurl:website = finds pages with specific term in URL
+	- "search phrase" Finds results with this exact phrase
+	- Words filetype:pdf = looks for PDFs with this term
+	- salary site:website.com = limits search to website
+	- pentest -site:website.com = excludes the term from the search
+	- walk intitle:Website = finds pages with specific term in page title
+	- challenge inurl:website = finds pages with specific term in URL
 
 ### Basic Operators
-- site: narrow results to a site   site:mysite.com
-- intitle: restrict results to titles of webpages  intitle:"admin"
-- inurl - restricts results to the URL of a website
-- filetype  - looks for filetypes based on extensions    filetype:pdf
-- link - searches for pages linking to a specific URL   link:website.com
-- cache - search for a cached copy of a webpage indexed by google
+	- site: narrow results to a site   site:mysite.com
+	- intitle: restrict results to titles of webpages  intitle:"admin"
+	- inurl - restricts results to the URL of a website
+	- filetype  - looks for filetypes based on extensions    filetype:pdf
+	- link - searches for pages linking to a specific URL   link:website.com
+	- cache - search for a cached copy of a webpage indexed by google
 
 ### Finds for services (note this will grow as I discover more)
-- site:mysite.com intitle:"index of"
-- May want to look for /etc/passwd   or  etc/mail   or /etc
+	- site:mysite.com intitle:"index of"
+	- May want to look for /etc/passwd   or  etc/mail   or /etc
 
 - SQL Databases and Files that may have credentials
-- intitle:"Index of" config.php  or intitle:"Index of" filetype:php config or intitle:"Index of" wp-config.php
-- It may show blank so we can use WGET to pull the data which downloads it
+	- intitle:"Index of" config.php  or intitle:"Index of" filetype:php config or intitle:"Index of" wp-config.php
+	- It may show blank so we can use WGET to pull the data which downloads it
 
 
 ### FILE TYPES TO LOOK FOR:
-- filetype: mdb, doc, docx, pdf, ini, xlsx, txt, config
+	- filetype: mdb, doc, docx, pdf, ini, xlsx, txt, config
 
 
 # What is to come	
