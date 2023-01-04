@@ -35,7 +35,7 @@ For Below - Step 1 or step 2 are performed in order based off the information th
 - Once all URL's are identified run OSINT-URL-Seeker
 
 ## Assetfinder
-- Find subdomains
+Find subdomains
 	- assetfinder $url >> /home/kali/Desktop/Engagement-<NAME>/assetFinderOutput.txt
 ## Amass
 - ABOUT: This identifies sudomains
