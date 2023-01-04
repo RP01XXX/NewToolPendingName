@@ -71,13 +71,13 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 - SOA = nslookup -q=soa URL
 
 ### Try a DNS zone transfer
-- dig -t AXFR DOMAIN_NAME @DNS_SERVER
-- The -t AXFR indicates that we are requesting a zone transfer, while @ precedes the DNS_SERVER that we want to query regarding the records related to the specified DOMAIN_NAME.
+	- dig -t AXFR DOMAIN_NAME @DNS_SERVER
+	- The -t AXFR indicates that we are requesting a zone transfer, while @ precedes the DNS_SERVER that we want to query regarding the records related to the specified DOMAIN_NAME.
 
 ### Windows CMD Prompt DNS Transfer
-- type nslookup, hit enter
-- server IP Address/URL
-- ls -d URL
+	- type nslookup, hit enter
+	- server IP Address/URL
+	- ls -d URL
 
 ### Dnsrecon zone transfer
 - Reverse of host resolution, we may need to get the IP addresses of the URL's by using dnsrecon -d URL   
