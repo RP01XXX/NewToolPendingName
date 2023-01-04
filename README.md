@@ -64,12 +64,35 @@ For Below - Step 1 or step 2 are performed in order based off the information th
 - If you were only given IP addresses  we will want to resolve all IP addresses to websites
 dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 	
-## URL resolution
+## DNS/Networking
+### whois
+- Either command line or just lookup.icann.org
+- nslookup We can lok up the A records, AAA, CNAME, TXT ,SOA if we want.
+- CNAME= nslookup -q=cname URL
+- TXT = nslookup -q=txt URL
+- SOA = nslookup -q=soa URL
+
+###Try a DNS zone transfer
+- dig -t AXFR DOMAIN_NAME @DNS_SERVER
+- The -t AXFR indicates that we are requesting a zone transfer, while @ precedes the DNS_SERVER that we want to query regarding the records related to the specified DOMAIN_NAME.
+
+### Windows CMD Prompt DNS Transfer
+- type nslookup, hit enter
+- server IP Address/URL
+- ls -d URL
+
+### Dnsrecon zone transfer
 - Reverse of host resolution, we may need to get the IP addresses of the URL's by using dnsrecon -d URL   
-• dnsrecon zone transfer  with dnsrecond -d URL -t axfr
-• dns bruteforce to find domains and hosts dnsrecon -d URL -D DICTIONARY -t brt
+- dnsrecon zone transfer  with dnsrecond -d URL -t axfr
+- dns bruteforce to find domains and hosts dnsrecon -d URL -D DICTIONARY -t brt
+
+### Dig
+- Dig website,com@X.X.X.X
+
+### Traceroute
+- Run a traceroute to discover hops to identify devices.
 	
-### Eyewitness
+## Eyewitness
 - Run  eyewitness to capture screenshots of login pages for IP's that have port 80/443/8080/8443 open. This list will be uses in login attacks. This needs to be done manually as I cant get bash to work.
 -  CMD eyewitness --web -F /home/kali/Desktop/NAME/assetFinderOutput.txt
 
@@ -78,6 +101,8 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 - Look into Tenables tool
 ## Nikto
 - Nikto -host <URL>
+### wpscan
+- Wordpress specific scanner, wpscan URL
 
 What you should have  at this point:
 - You should have a listing of all live IP addresses, all URLs, a screenshot of all HTTP(s) pages, subdomains, a port and protocol listing for each host. We want to find usernames/emails associated with the company  as well and then  we can  begin identifying the attack vectors.
@@ -98,46 +123,45 @@ What you should have  at this point:
 - We use this  tool to further inspect users found from above scans,may provide other usernames
 - cmd: python3 sherlock.py <username>
 
+## Office 365 User Identification
+### o365spray (https://github.com/0xZDH/o365spray)
+- We can use o365spray to test the domain if its real first
+- o365spray --validate --domain website.com
+- Next lets take any users we have found in OSINT and see if they are real
+- o365spray --enum -U usernames.txt --domain domain.com
+- Now its time to see if we can get into any accounts without MFA
+- o365spray  --spray -U usernames.txt -P passwords.txt --count 2 --lockout 3 --domain test.com
+- Flags
+- count = how many tries of passwords before lockout
+- lockout is the time for lockout time IE in minutes
+- --spray-module = oauth, autodiscover, reporting, adfs, activesync
+- --output   the file
+
+### 0365enum
+- https://github.com/gremwell/o365enum
+
+### MSOLspray
+- https://github.com/dafthack/MSOLSpray
+
+### msspray.py
+
+
 # What is to come	
 ## Port/Protocol Enumeration and Attacks
 
 ## Website Analysis
+### Dorking Syntax
+- "search phrase" Finds results with this exact phrase
+- Words filetype:pdf = looks for PDFs with this term
+- salary site:website.com = limits search to website
+- pentest -site:website.com = excludes the term from the search
+- walk intitle:Website = finds pages with specific term in page title
+- challenge inurl:website = finds pages with specific term in URL
+
+
+
 - Wappalyzer
 - Dirbuster/Dirb/Gobuuster
 - Directory Bust ffuf    (403 and 401) attack with /unauth_dir/FUZZ
 - Wayback Machine
 - Metasploit auxiliary/scanner/http/dir-scanner <DICTIONARY>  (opt/seclists/discovery/Web-content/common.txt)
-
-## Exploits
-## WebDAV 
-This is a website protocol allows for a user to publish data, copy data and move data.
-This allows someone to remotely access  the site and is a target for threat actors
-This could allow you to upload a reverse shell.
-
-### Process-----------------------------------
-• curl -T 'file' http://x.x.x.x
-
-• Finding it verifies webdav is open
-	msfconsole
-	auxiliary/scanner/http/webdav_scanner
-	options RHOSTS, RPORT, PATH=/dav/
-
-• verify you can exchange files with Webdav
-	Davtest -url http://x.x.x.x/dav
-	this will verify what can be sent
-
-
-SEND FILES (Exploit)
-
-go to the websites http://x.x.x.x/dav to see if you can see it
-create your shell for reverse http connection
-cadaver http://x.x.x.x/dav   CONNECTS
-
-put test.txt
-
-and it should place the file
-
-https://hacktricks.boitatech.com.br/pentesting/pentesting-web/put-method-webdav
-
-DEFAULT CREDENTIALS: UN: jigsaw PW: jigsaw
-    
