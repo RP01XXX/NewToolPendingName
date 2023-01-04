@@ -93,8 +93,8 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 - Run a traceroute to discover hops to identify devices.
 	
 ## Eyewitness
-- Run  eyewitness to capture screenshots of login pages for IP's that have port 80/443/8080/8443 open. This list will be uses in login attacks. This needs to be done manually as I cant get bash to work.
--  CMD eyewitness --web -F /home/kali/Desktop/NAME/assetFinderOutput.txt
+	- Run  eyewitness to capture screenshots of login pages for IP's that have port 80/443/8080/8443 open. This list will be uses in login attacks. This needs to be done manually as I cant get bash to work.
+	-  CMD eyewitness --web -F /home/kali/Desktop/NAME/assetFinderOutput.txt
 	
 ## TLS/SSL Check
 ### SSLYZE
