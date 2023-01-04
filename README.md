@@ -135,7 +135,6 @@ What you should have  at this point:
 	- cmd: python3 sherlock.py <username>
 - We use this  tool to further inspect users found from above scans,may provide other usernames
 
-
 ## Office 365 User Identification
 ### o365spray https://github.com/0xZDH/o365spray
 	- We can use o365spray to test the domain if its real first
@@ -158,6 +157,16 @@ What you should have  at this point:
 
 ### msspray.py
 	https://github.com/SecurityRiskAdvisors/msspray
+
+## Breached Data
+	Dehashed
+	Breach-Parse
+	HaveIBeenPwned
+
+## Building Password/User Lists
+	Look at the local area, phone numbers, building numbers, key employees, partners/vendors.
+	Look for local sports teams, parks, zoo's with animal names that are well known. These are often used as passwords.
+	For example, Saint Louis Blues password may be letsgoblues!
 
 # !! STOP !!! Review
 - At this point, you may move to port/protocol attacking, or move into the website. Up to you on the direction you take
@@ -193,6 +202,9 @@ What you should have  at this point:
 
 ### FILE TYPES TO LOOK FOR:
 	- filetype: mdb, doc, docx, pdf, ini, xlsx, txt, config
+### Helpful tools
+	https://dorksearch.com/
+	
 
 ## Github Dorking (Adding in progress)
 - search for the targets name
