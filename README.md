@@ -29,7 +29,7 @@ Administrative
 
 For Below - Step 1 or step 2 are performed in order based off the information the client provides (URL or IP)
 
-# Discovery Step 1: -------------
+# Discovery Step 1: Identifying the Target
 ## Identify all domains/IPs
 - If client only provides IP addresses then we use OSINT-IP-Scanner to identify websites.
 - Once all URL's are identified run OSINT-URL-Seeker
@@ -51,7 +51,7 @@ For Below - Step 1 or step 2 are performed in order based off the information th
 - ABOUT: This will take the Amass IPs and  pull out the unique IP addresses for the NMAP scans.
 - grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" $path/$Name/AmassSubDomains.txt | sort -u >> $path/$Name/UniqueIps.txt
 
-# Discovery Step 2: ID ports -------------
+# Discovery Step 2: Identify Ports/Protocols/Services
 ## Nmap Work
 - ABOUT: ping scan - Perform an NMAP ping scan to identify live hosts and export to a list. Then grep that list and perform a low hanging fruit and full NMAP scan.
 - CMD:nmap -sP  $IP -oG - | grep Host | cut -d' ' -f 2 | sort -u > "/$path/Nmap-$Name/PingSweep.txt""
@@ -95,20 +95,29 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 ## Eyewitness
 - Run  eyewitness to capture screenshots of login pages for IP's that have port 80/443/8080/8443 open. This list will be uses in login attacks. This needs to be done manually as I cant get bash to work.
 -  CMD eyewitness --web -F /home/kali/Desktop/NAME/assetFinderOutput.txt
+	
+## TLS/SSL Check
+### SSLYZE
+	- ssylyze URL
+	- This tool has a lot of functionality with its flags, review them with -h.The syntax I provide tests for everything.
+### SSLSCAN
+	- sslscan URL
+### Qualys Rating
+	- https://ssllabs.com/ssltest
 
-# Discovery Step 3: Vulnerability Scans-------
+# Discovery Step 3: Vulnerability Scans
 ## Nessus
 - Look into Tenables tool
 ## Nikto
 - Nikto -host <URL>
 ## Wpscan
 - Wordpress specific scanner, wpscan URL
-
+	
 What you should have  at this point:
 - You should have a listing of all live IP addresses, all URLs, a screenshot of all HTTP(s) pages, subdomains, a port and protocol listing for each host. We want to find usernames/emails associated with the company  as well and then  we can  begin identifying the attack vectors.
 
 
-# Discovery Step 4: Username and email discovery. THIS SECTION IS IN PROCESS NOW
+# Discovery Step 4: Username and email discovery
 ## The Harvester
 - b specifies where we look for the emails
 - twitter, google, linkedin, all, dnsudmpsterp, crtsh,certspotter
