@@ -195,7 +195,43 @@ What you should have  at this point:
 	- filetype: mdb, doc, docx, pdf, ini, xlsx, txt, config
 
 ## Github Dorking (Adding in progress)
+- search for the targets name
+- check repositories and issues, may find an API key exposed
+
+### API hunting
+	extension:json <companyName>
+	shodan_api_key <companyName>
+	Common headers = :authorization:bearer" <companyName>
+	filename: swagger.json <companyName>
+	content-type: application/json" <companyName>
+
+### Helpful Search Terms
+	extension:pem private # Private SSH Keys
+	extension:sql mysql dump # MySQL dumps
+	extension:sql mysql dump password # MySQL dumps with passwords
+	filename:wp-config.php # Wordpress config file
+	filename:.htpasswd # .htpasswd
+	filename:.git-credentials # Git stored credentials
+	filename:.bashrc password # .bashrc files containing passwords
+	filename:.bash_profile aws # AWS keys in .bash_profiles
+	extension:json mongolab.com # Keys/Credentials for mongolab
+	HEROKU_API_KEY language:json # Heroku API Keys
+	filename:filezilla.xml Pass # FTP credentials
+	filename:recentservers.xml Pass # FTP credentials
+	filename:config.php dbpasswd # PHP Applications databases credentials
+	shodan_api_key language:python # Shodan API Keys (try others languages)
+	filename:logins.json # Firefox saved password collection (key3.db usually in same repo)
+	filename:settings.py SECRET_KEY # Django secret keys (usually allows for session hijacking, RCE, etc)
+
+## Shodan
+### Example <Company Name>
+	- companyName port:<port>
+	- "content-type: application/json" <companyName>
+	- "wp-json" <companyName"
 
 
+## Wayback Machine
+	- Can search the URLs found from above, looking for API changes to documentation or function.
+See if the old API's still exist, try to access them.
 	
 
