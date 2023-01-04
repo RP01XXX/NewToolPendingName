@@ -33,15 +33,13 @@ For Below - Step 1 or step 2 are performed in order based off the information th
 ## Identify all domains/IPs
 - If client only provides IP addresses then we use OSINT-IP-Scanner to identify websites.
 - Once all URL's are identified run OSINT-URL-Seeker
-### NSLookup
-- ABOUT: Run a simple nslookup and mxtoolbox scan  of URLs
-- CMD: nslookup <url> >> /Desktop/Engagement-<NAME>/NSLOOKUP.txt
+
 ## Assetfinder
 - Find subdomains
-- CMD: assetfinder $url >> /home/kali/Desktop/Engagement-<NAME>/assetFinderOutput.txt
+	assetfinder $url >> /home/kali/Desktop/Engagement-<NAME>/assetFinderOutput.txt
 ## Amass
 - ABOUT: This identifies sudomains
-- CMD: amass enum -active -d <URL>  -src -ip -dir <PATHWAY> -o <OUTPUTPATH>
+	amass enum -active -d <URL>  -src -ip -dir <PATHWAY> -o <OUTPUTPATH>
 ## WhatWeb
 - ABOUT: This tool finds HTTP headers, country of IP, HTTP server info, HTTPAPI info and more.
 ## CRT.sh
@@ -49,7 +47,7 @@ For Below - Step 1 or step 2 are performed in order based off the information th
 
 ## Grep Out Amass IPs
 - ABOUT: This will take the Amass IPs and  pull out the unique IP addresses for the NMAP scans.
-- grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" $path/$Name/AmassSubDomains.txt | sort -u >> $path/$Name/UniqueIps.txt
+	grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" $path/$Name/AmassSubDomains.txt | sort -u >> $path/$Name/UniqueIps.txt
 
 # Discovery Step 2: Identify Ports/Protocols/Services
 ## Nmap Work
