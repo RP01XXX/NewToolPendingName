@@ -157,10 +157,13 @@ What you should have  at this point:
 	- https://github.com/dafthack/MSOLSpray
 
 ### msspray.py
+	https://github.com/SecurityRiskAdvisors/msspray
 
+# !! STOP !!! Review
+- At this point, you may move to port/protocol attacking, or move into the website. Up to you on the direction you take
 
-# Discovery Step 5: Website Analysis
-- Note, this section will not use the full Web Application OWASP Top 10 list. That will be a seperate section/checklist.
+# Website Analysis: Enumeration IN PROGRESS
+- This section will not include OWASP Testing or API Testing. Thats a different checklist.
 	
 ## Google Dorking
 ### Dorking Syntax
@@ -192,11 +195,5 @@ What you should have  at this point:
 	- filetype: mdb, doc, docx, pdf, ini, xlsx, txt, config
 
 
-# What is to come	
-- Wappalyzer
-- Dirbuster/Dirb/Gobuuster
-- Directory Bust ffuf    (403 and 401) attack with /unauth_dir/FUZZ
-- Wayback Machine
-- Metasploit auxiliary/scanner/http/dir-scanner <DICTIONARY>  (opt/seclists/discovery/Web-content/common.txt)
 	
 
