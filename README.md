@@ -66,9 +66,9 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 ### whois
 - Either command line or just lookup.icann.org
 - nslookup We can lok up the A records, AAA, CNAME, TXT ,SOA if we want.
-- CNAME= nslookup -q=cname URL
-- TXT = nslookup -q=txt URL
-- SOA = nslookup -q=soa URL
+	- CNAME= nslookup -q=cname URL
+	- TXT = nslookup -q=txt URL
+	- SOA = nslookup -q=soa URL
 
 ### Try a DNS zone transfer
 	- dig -t AXFR DOMAIN_NAME @DNS_SERVER
@@ -81,8 +81,8 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 
 ### Dnsrecon zone transfer
 - Reverse of host resolution, we may need to get the IP addresses of the URL's by using dnsrecon -d URL   
-- dnsrecon zone transfer  with dnsrecond -d URL -t axfr
-- dns bruteforce to find domains and hosts dnsrecon -d URL -D DICTIONARY -t brt
+	- dnsrecon zone transfer  with dnsrecond -d URL -t axfr
+	- dns bruteforce to find domains and hosts dnsrecon -d URL -D DICTIONARY -t brt
 
 ### Dig
 - Dig website,com@X.X.X.X
