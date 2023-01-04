@@ -36,10 +36,10 @@ For Below - Step 1 or step 2 are performed in order based off the information th
 
 ## Assetfinder
 - Find subdomains
-	assetfinder $url >> /home/kali/Desktop/Engagement-<NAME>/assetFinderOutput.txt
+	- assetfinder $url >> /home/kali/Desktop/Engagement-<NAME>/assetFinderOutput.txt
 ## Amass
 - ABOUT: This identifies sudomains
-	amass enum -active -d <URL>  -src -ip -dir <PATHWAY> -o <OUTPUTPATH>
+	- amass enum -active -d <URL>  -src -ip -dir <PATHWAY> -o <OUTPUTPATH>
 ## WhatWeb
 - ABOUT: This tool finds HTTP headers, country of IP, HTTP server info, HTTPAPI info and more.
 ## CRT.sh
