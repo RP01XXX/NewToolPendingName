@@ -29,24 +29,23 @@ if [ ! -d "$path/$Name" ];then
 	mkdir "$path/$Name/" 
 fi
 
-echo "[+] NSLOOKUP is running....."
+echo "[1/] NSLOOKUP is running....."
 nslookup $url >> $path/$Name/NSLOOKUP.txt
 echo "NSLOOKUP is Done..."
 
-echo "[+] Assetfinder is running....."
+echo "[1/] Assetfinder is running....."
 assetfinder $url >> $path/$Name/assetFinderOutput.txt
 echo "Assetfinder is Done..."
 
-echo "[+]  Whatweb is running......."
+echo "[1/]  Whatweb is running......."
 whatweb $url --aggression 3 -v --no-errors --log-verbose=$path/$Name/WWebResults.txt
 
 #SSL Scan 
 echo "Scanning for SSL Vulnerabilities....."
 sslyze $url >> $path/$Name/sslfindings.txt
 
-
 #Amass Finds all Subdomains and IP addresses, not unique and is grepped out later
-echo "[+] Amass is running, take a breather ;)....."
+echo "[4/] Amass is running, take a breather ;)....."
 amass enum -active -d $url -src -ip -dir $path/$Name/ -o $path/$Name/AmassSubDomains.txt
 rm $path/$Name/amass.log
 rm $path/$Name/amass.json
@@ -54,12 +53,29 @@ rm $path/$Name/indexes.bolt
 amass viz -d3  -d $url
 echo "Amass is Done..."
 
+# DNS Recon Run
+echo "[5/] DNS Recon is running.........."
+dnsrecon -d $url -a -c $path/$Name/
+
+# DIG
+dig $url > $path/$Name/digResults.txt
+
+# The Harvester
+echo "[6/] TheHarvester is running............."
+theHarvester -d <URL> -l 200 -b bing,bingapi,certspotter,dnsdumpster,sublist3r,urlscan,virustotal -f $path/$Name/Harvested.txt
+
+echo "Cleaning up your results"
 
 echo "identify unique IP's from  Amass"
-grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" $path/$Name/AmassSubDomains.txt | sort -u >> $path/$Name/UniqueIps.txt
+grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" $path/$Name/AmassSubDomains.txt | sort -u >> $path/$Name/UniqueAmassIps.txt
+rm $path/$Name/AmassSubDomains.txt
+
+echo "identify unique IP's from  NSLOOKUP"
+grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" $path/$Name/NSLOOKUP.txt | sort -u >> $path/$Name/NSIPs.txt
+rm $path/$Name/NSLOOKUP.txt
+
 
 #This stops here as you need to verify if all IPs found are in scope or not.
-
 
 echo "Directory Permissions setting..."
 chmod 777 $path/$Name/*
