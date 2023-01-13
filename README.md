@@ -48,6 +48,7 @@ For Below - Step 1 or step 2 are performed in order based off the information th
 ## Grep Out Amass IPs
 - ABOUT: This will take the Amass IPs and  pull out the unique IP addresses for the NMAP scans.
 	grep -E -o "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" $path/$Name/AmassSubDomains.txt | sort -u >> $path/$Name/UniqueIps.txt
+	
 
 # Discovery Step 2: Identify Ports/Protocols/Services
 ## Nmap Work
@@ -64,6 +65,7 @@ dnsrecon -r $IP -t rvl -c "path/Nmap-$Name/Hostnames.txt"
 	
 ## DNS/Networking
 ### whois
+	- CMD: whois <URL> 
 	- Either command line or just lookup.icann.org
 	- nslookup We can lok up the A records, AAA, CNAME, TXT ,SOA if we want.
 	- CNAME= nslookup -q=cname URL
@@ -110,6 +112,9 @@ Reverse of host resolution, we may need to get the IP addresses of the URL's by 
 	- Nikto -host <URL>
 ## Wpscan
 - Wordpress specific scanner, wpscan URL
+
+## Scan for a WAF
+- wafw00f <URL>
 	
 What you should have  at this point:
 - You should have a listing of all live IP addresses, all URLs, a screenshot of all HTTP(s) pages, subdomains, a port and protocol listing for each host. We want to find usernames/emails associated with the company  as well and then  we can  begin identifying the attack vectors.
