@@ -167,6 +167,7 @@ What you should have  at this point:
 	- Identify the host
 	- trevorspray -recon host.com
 	- Trevorspray -u users.txt -p "password" --url recon finding
+	- https://github.com/blacklanternsecurity/TREVORspray
 This is a great tool to validate accounts and also identify MFA. JUST BE CAREFUL because spraying WILL lockout accounts so be careful.
 
 ## Breached Data
