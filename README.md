@@ -163,6 +163,12 @@ What you should have  at this point:
 ### msspray.py
 	https://github.com/SecurityRiskAdvisors/msspray
 
+## Office 365 Attack 2
+	- Identify the host
+	- trevorspray -recon host.com
+	- Trevorspray -u users.txt -p "password" --url recon finding
+This is a great tool to validate accounts and also identify MFA. JUST BE CAREFUL because spraying WILL lockout accounts so be careful.
+
 ## Breached Data
 	Dehashed
 	Breach-Parse
