@@ -172,6 +172,10 @@ This is a great tool to validate accounts and also identify MFA. JUST BE CAREFUL
 
 ## Breached Data
 	Dehashed
+		Pull the api file and then:
+			awk -F: '{print $1}' <targetfile> > users.txt
+			awk -F: '{print $2}' <targetfile> > passwords.txt
+			awk -F@ '{print $1}' <userfile> > userswithoutdomain.txt
 	Breach-Parse
 	HaveIBeenPwned
 
@@ -258,4 +262,7 @@ This is a great tool to validate accounts and also identify MFA. JUST BE CAREFUL
 	- Can search the URLs found from above, looking for API changes to documentation or function.
 See if the old API's still exist, try to access them.
 	
-
+## IIS Pentesting
+	Internal IP Disclosure
+		NMAP --script http-internal-ip-disclosure <target>
+		telnet  X.X.X.X <80/443>   THEN, PROPFIND /HTTP/<1.0/1.1>
