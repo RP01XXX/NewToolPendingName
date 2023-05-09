@@ -42,6 +42,7 @@ For Below - Step 1 or step 2 are performed in order based off the information th
 	- amass enum -active -d <URL>  -src -ip -dir <PATHWAY> -o <OUTPUTPATH>
 ## WhatWeb
 - ABOUT: This tool finds HTTP headers, country of IP, HTTP server info, HTTPAPI info and more.
+	- whatweb
 ## CRT.sh
 - ABOUT:  This tool is a web based domain tool that can be used with different syntax to enumerate  domains. Note you can  automate this tool.
 
