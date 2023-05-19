@@ -122,21 +122,23 @@ What you should have  at this point:
 
 
 # Discovery Step 4: Username and email discovery
+	- Use all resources to build a comprehensive email list.
 ## The Harvester
 	- b specifies where we look for the emails
 	- twitter, google, linkedin, all, dnsudmpsterp, crtsh,certspotter
 	- CMD: theHarvester -d website -b All
-	
 ## Hunter.io
-
+	Not really a preferred tool now that its behind a pay wall/
 ## Dehashed
-
-## phonebook.cz
-
+	Excellent for breach creds
 ## javascript linkedin scraper
+	Check out my Email scraper repository for my JS script tool
 
-##python email scraper
-	they have their own tool in the system. They have an if count ==  100, which goes through a url you specify  and then crawls out until it hits 100 websites and finds emails.
+## python email scraper
+	Check out my email scraper repository to run the email scraper against the companies website
+## Crosslinked
+	Run crosslinked to find emails
+		crosslinked -f '{f}{last}@compay.com' company_name
 ## sherlock
 	- cmd: python3 sherlock.py <username>
 - We use this  tool to further inspect users found from above scans,may provide other usernames
