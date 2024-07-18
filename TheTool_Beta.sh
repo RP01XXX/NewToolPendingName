@@ -9,6 +9,7 @@ NC='\033[0m' # No color
 #Get Time
 current_time=$(date "+%m.%d.%Y")
 
+# Flag Identification
 function flag_usage(){
  echo -e "Usage: Credential_Enumeration.sh -f <${CYAN}Hosts_File>${NC} -c <${CYAN}Client_Name${NC}> -d <${CYAN}Domain Name${NC}>"
  echo # Add a blank line after each function output bash
@@ -41,7 +42,7 @@ done
 # Setting the Foldername to an easier variable
 FOLDERNAME=$client_name-$current_time
 
-# MAKE THE LOT FOLDER
+# MAKE THE LOT FOLDER  THIS NEEDS EXPANDING
 function make_loot_folder(){
 	mkdir $FOLDERNAME
 }
