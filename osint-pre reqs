@@ -1,16 +1,1 @@
-"AssetFinder"
-git clone https://github.com/tomnomnom/assetfinder.git
-
-"Checking Amass"
-apt-get update
-apt-get install amass
-
-"Checking Sublist3r"
-git clone https://github.com/aboul3la/Sublist3r.git
-cd Sublist3r
-sudo pip install -r requirements.txt
-
-"CrossLinked is Installing"
-git clone https://github.com/m8sec/crosslinked
-cd crosslinked
-pip3 install -r requirements.txt
+Needs to be the pre-reqs for the tools. I would like to integrate this.
