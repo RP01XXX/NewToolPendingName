@@ -2,19 +2,16 @@
 These tools are used to make pentesting a little more automatic and easy. Verify  what the client has provided to determine which OSINT tool you use. 
 Then move to vulnerability scanning and identification.
 
-1. OSINT-IP-Finder
-  This is for tests that only provide IP ranges and you need to scan. This performs your enumeration phases. 
-  This is considered done for now. This is run first and then you run OSINT seeker
-  
-2. OSINT Seeker
-  This is for tests where you only have URLS.
-  
-3. External-Identification
-  This performs vulnerability scans, identifies services and parses data, and captures webpages.
+Purpose The purpose of this tool is to perform our general easy day 1 scans in an automated way.
 
-  
-After tool  3, you would begin your manual work.
-  
+File Structure
+We have the Testing_Template.sh, this is what we use to test our initial integrations. Its a stripped version of the code that allows us to test features and functions.
+
+Future Integrations
+Add additional tools
+Recursively perform scans so it uses results to continue more scanning
+The outputs are exported into specific folders/files for review so for example: Nmap exports results to HTTP Folder, etc and feeds into eyewitness.
+Idk how do we automate our lives.
  
 These are all in progress and I would love your opinion on this work to make it better!
 # External-Pentest-Checklist
