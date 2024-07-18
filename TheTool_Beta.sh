@@ -59,10 +59,14 @@ function check_required_flags() {
 # -------------------------------THE FUNCTIONS
 
 function NMAP_Scan(){
-    nmap -p- -A -T4 -Pn "$file_name" -oN ./$FOLDERNAME/nmap_TCPscan_$client_name.txt
-    nmap -p- -A -sU -T4 -Pn "$file_name" -oN ./$FOLDERNAME/nnmap_UDPscan_$client_name.txt
+    nmap -p- -sV -sC -T4 -Pn -iL $file_name > ./$FOLDERNAME/nmap_TCPscan_$client_name.txt
+    nmap -p- -sV -sC -sU -T4 -Pn -iL $file_name > ./$FOLDERNAME/nnmap_UDPscan_$client_name.txt
+    nmap -p 80,443,8080,8443,8001,8002 -A -iL $file_name > /$FOLDERNAME/nmapweb_scan.txt
+    nmap -p- -A -Pn -iL $file_name > ./$FOLDERNAME/nmap_Full_$client_name.txt
     }
-    
+function Eyewitness(){
+    eyewitness --web -F $file_name --add-http-ports '8008,8080,8001,8002' --add-https-ports '8443'
+    }
 function SSLScan(){
     sslscan --targets $file_name> ./$FOLDERNAME/sslscan_$client_name.txt
     }
