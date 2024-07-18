@@ -17,6 +17,9 @@ Idk how do we automate our lives.
 
 -----------------------------------------
 **TO ADD**
+1. ALSO NEED TO ADD THE PREREQS so it installs
+2. Add a check that its run as sudo
+3. Add the tools below
 ### Dnsrecon zone transfer
 	- dnsrecon zone transfer  with dnsrecond -d URL -t axfr
 	- dns bruteforce to find domains and hosts dnsrecon -d URL -D DICTIONARY -t brt
